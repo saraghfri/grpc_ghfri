@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+package ifno;
+
+service API {
+    rpc SendSMS (SendSMSRequest) returns (SendSMSResponse) {}
+    rpc Login (LoginRequest) returns (LoginResponse) {}
+}
+
+
+message SendSMSRequest {
+    string phoneNumber = 1;
+}
+message SendSMSResponse {
+    uint32 response = 1;
+    double seconds = 2;
+}
+
+message LoginRequest {
+    string phoneNumber = 1;
+    string code = 2;
+}
+
+message LoginResponse {
+    uint32 response = 1;
+    string token = 2;
+    User user = 3;
+}
+
+message User{
+    string chainUserId = 1;
+    string phoneNumber = 2;
+    string name = 3;
+    // PrivacyPolicy policyPrivacy = 5;
+}
